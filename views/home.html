@@ -1,0 +1,66 @@
+<h3><i class="fa fa-hand-o-right pointer"></i>{{$state.current.title}}</h3>
+<!-- main -->
+<div class="col" cg-busy="listBusyPromise">
+	<!-- main header -->
+	<div class="row ">
+		<div class="col-lg-3 col-sm-6 col-header" ng-repeat="field in Mainheader" ng-click="LinkClick($index)">
+			<div class="panel widget bg-primary headerNav" style="background: {{field.background}} ">
+				<div class="row row-table">
+					<div class="pv-lg">
+						<div class="h2 mt0">
+							<span class="headericon" ng-class="field.icon"></span>
+						</div>
+						<div class="text-uppercase">{{field.Name}}</div>
+					</div>
+				</div>
+				<span class="headercomment" ng-if="field.index===1">
+            <span>{{commentNum}}</span>
+				</span>
+			</div>
+		</div>
+
+		<!-- main center -->
+		<div class="col-lg-12">
+			<div class="main-box clearfix">
+				<header class="main-box-header clearfix">
+					<h5><i class="glyphicon glyphicon-list"></i> 待办事项</h5>
+				</header>
+				<div class="main-box-body clearfix">
+					<div class="Todo-contain">
+						<div class="TodoTitle">商品管理</div>
+						<div class='col-lg-12 TodoAct'>
+							<div class="col-lg-4" ng-repeat="field in Commoditymanagement">
+								{{field.CommodityName}}:
+								<span>{{field.value}}</span>
+							</div>
+						</div>
+						<div class="TodoTitle">活动管理</div>
+						<div class='col-lg-12 TodoAct'>
+							<div class="col-lg-4" ng-repeat="field in Activitymanagement">
+								{{field.ActivityName}}:
+								<span>{{field.value}}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- main footer -->
+		<div class="col-lg-12">
+			<div class="main-box clearfix echartsFooter">
+
+				<header class="main-box-header clearfix">
+					<h5><i class="fa fa-bar-chart"></i> 促销统计</h5>
+				</header>
+				<div class="main-box-body clearfix my-echarts" id="myEcharts">
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+<!-- / main -->
+
+<!-- / right col -->

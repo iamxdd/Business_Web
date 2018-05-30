@@ -1,0 +1,178 @@
+<h3>{{$state.current.title}}</h3>
+
+<div class="panel panel-default" cg-busy="listBusyPromise">
+	<div class="text-right">
+		<div class="commodity-btn" ng-class="statusClass(DetailsData.ReviewState)">
+		</div>
+	</div>
+
+	<!--<a class="btn-black-img"  ui-sref="app.auditManagement">
+		<img ng-src="img/backBtns.jpg" />
+	</a>-->
+	<i class="fa fa-arrow-left back-i" id="back-all-btn" onclick="javascript:history.back(-1)" aria-hidden="true"></i>
+
+	<div class="row rownew">
+		<div class="form-group  col-lg-4">
+			<div class="form-group-div">商品名称:</div>
+			<span>{{DetailsData.Name}}</span>
+		</div>
+		<div class="form-group col-lg-8">
+			<div class="form-group-div">有效期:</div>
+			<span ng-if="DetailsData.Way===1">{{DetailsData.UseTimeRange}}</span>
+			<span ng-if="DetailsData.Way===2">{{UseTimeRangeO}}~{{UseTimeRangeT}}</span>
+		</div>
+		<div class="form-group  col-lg-4">
+			<div class="form-group-div">范围:</div>
+			<span ng-bind="DetailsData.Range===1 ? '全部商品' : '部分商品'"></span>
+		</div>
+		<div class="form-group col-lg-8">
+			<div class="form-group-div">叠加数量:</div>
+			<span>{{DetailsData.SuperpositionNum}} 张</span>
+		</div>
+		<div class="form-group  col-lg-4">
+			<div class="form-group-div">积分:</div>
+			<span>{{DetailsData.PointNum}}</span>
+		</div>
+		<div class="form-group col-lg-8">
+			<div class="form-group-div">优惠券类型:</div>
+			<span>{{numberToText(DetailsData.CouponType,ticketCategoryCodes)}}</span>
+		</div>
+		<div class="form-group col-lg-12" ng-if="DetailsData.CouponType===4">
+			<div class="form-group-div">价格:</div>
+			<span>{{DetailsData.Worth}}元</span>
+		</div>
+		<div class="form-group col-lg-12">
+			<div class="form-group-div">照片:</div>
+			<div class="commodityphoto min-h">
+				<img ng-src="{{x}}" alt="" ng-repeat="x in DetailsData.imgList" />
+			</div>
+
+		</div>
+		<div class="form-group  col-lg-12">
+			<div class="form-group-div">描述:</div>
+			<span>{{DetailsData.Describe}}</span>
+		</div>
+		<div class="form-group  col-lg-12">
+			<div class="form-group-div">店铺地址:</div>
+			<span>{{DetailsData.ShopMapAddress}}</span>
+		</div>
+	</div>
+	<!--结束-->
+	<div class="hengxian"></div>
+	<div class="row rownew">
+		<div class="form-group  col-lg-12">
+			<div class="form-group-div">添加人:</div>
+			<span>{{DetailsData.ShopMemberNickName}}</span>
+		</div>
+		<div class="form-group  col-lg-12">
+			<div class="form-group-div">时间:</div>
+			<span>{{DetailsData.CreatedAt|date:"yyyy-MM-dd HH:mm"}}</span>
+		</div>
+		<div class="col-lg-12 text-center">
+			<!--ReviewState:1待审核 ，2 已通过,3未通过,4未提交-->
+			<button type=" button" ng-if="jurisdiction.delete && type==1&&DetailsData.ReviewState!=2" ng-click="deleteItem() " class="mar-r btn upShelves-new  btn-danger">删除</button>
+			<button ng-if="(DetailsData.ReviewState!=1||DetailsData.ReviewState!=2) && jurisdiction.edit && type==1" type="button " ng-click="editorItem()" class="mar-r  upShelves-new  btn btn-primary">修改</button>
+			<button ng-if="DetailsData.ReviewState!=2 &&  jurisdiction.toggle && type==2" ng-click="toggleItem()" class="btn mar-r upShelves-new " ng-class="isToggle()" ng-bind="toggleText()"></button>
+		</div>
+	</div>
+</div>
+
+<script type="text/ng-template" id="createTwo">
+	<div class="modal-header">
+		<h5 class="modal-title">修改商品信息</h5>
+	</div>
+	<div class="modal-body" cg-busy="ngDialogPromise">
+		<!--<div class="formlist" fields-data="fieldsList" close-dialog="closeThisDialog(0)" form-submit="formSubmit()"></div>-->
+		<form class="form-horizontal mycheckbox-inline" form-submit="formSubmit()">
+			<div class="form-group col-lg-6">
+				<label class="control-label col-lg-2">名称</label>
+				<div class="col-lg-10">
+					<input type="text" ng-model="editorData.Name" class="form-control" required placeholder="请输入商品名称" maxlength="30" />
+				</div>
+			</div>
+			<div class="form-group col-lg-6">
+				<label class="control-label col-lg-4">范围</label>
+				<div class="col-lg-8">
+					<select class="form-control" ng-model="editorData.Range" ng-options="x.Id as x.Name for x in RangeSelect"></select>
+				</div>
+			</div>
+			<!--<div class="form-group col-lg-6">
+				<label class="control-label col-lg-2">积分</label>
+				<div class=" col-lg-10">
+					<input type="text" ng-model="editorData.PointNum" class="form-control" required />
+				</div>
+			</div>-->
+			<!--<div class="form-group col-lg-5">
+				<label class="control-label col-lg-4">每人限购数量</label>
+				<div class=" col-lg-8 form-inline">
+					<input type="text" ng-model="editorData.SuperpositionNum" class="form-control half-width" required />&nbsp;&nbsp;&nbsp;<span class="add-on" style="color: #f60;font-size: 12px;">顾客限购数量</span>
+				</div>
+			</div>-->
+			<div class="form-group col-lg-6">
+				<label class="control-label col-lg-2">库存</label>
+				<div class=" col-lg-10">
+					<input type="text" ng-model="editorData.RepositoryCount" class="form-control" required />
+				</div>
+			</div>
+			<!--<div class="form-group col-lg-6">
+				<label class="control-label col-lg-4">每日发放量</label>
+				<div class=" col-lg-8">
+					<input type="text" ng-model="editorData.paymentCount" class="form-control" required />
+				</div>
+			</div>-->
+			<div class="form-group col-lg-6">
+				<label class="control-label col-lg-4">券类型</label>
+				<div class="col-lg-8">
+					<select class="form-control" ng-model="editorData.CouponType" ng-change="selectCouponType(editorData.CouponType)" ng-options="x.Id as x.Name for x in ticketCategoryCodes"></select>
+				</div>
+			</div>
+			<div class="form-group col-lg-6" ng-if="editorData.CouponType===4">
+				<label class="control-label col-lg-2">价格</label>
+				<div class=" col-lg-10 new-input-border">
+					<input type="text" ng-model="editorData.Worth" class="form-control " required />
+				</div>
+			</div>
+			<div class="form-group col-lg-12">
+				<label class="control-label col-lg-1">有效期</label>
+				<div class=" col-lg-11 one-columu" id="usTime">
+					<div class="form-inline" ng-if="editorData.Type==='2'">
+						<input ng-model="editorData.StartAt" type="text" class="form-control" id="startTime" placeholder="开始时间" /> &nbsp;-&nbsp;
+						<input ng-model="editorData.EndAt" type="text" class="form-control" id="endTime" placeholder="结束时间" />
+					</div>
+				</div>
+			</div>
+
+			<div class="clearfix">
+
+			</div>
+			<div class="form-group">
+				<label class="control-label col-lg-1">商品图片</label>
+				<div class="col-lg-2 upImg">
+					<image-file-uploader uif-callback="configImageAfterUploadOne(url)" ng-disabled="editing" default-url="{{editorData.ImagesOne}}"></image-file-uploader>
+				</div>
+				<div class="col-lg-2 upImg">
+					<image-file-uploader uif-callback="configImageAfterUploadTwo(url)" ng-disabled="editing" default-url="{{editorData.ImagesTwo}}"></image-file-uploader>
+				</div>
+				<div class="col-lg-2 upImg">
+					<image-file-uploader uif-callback="configImageAfterUploadThree(url)" ng-disabled="editing" default-url="{{editorData.ImagesThree}}"></image-file-uploader>
+				</div>
+				<div class="col-lg-2 upImg">
+					<image-file-uploader uif-callback="configImageAfterUploadFour(url)" ng-disabled="editing" default-url="{{editorData.ImagesFour}}"></image-file-uploader>
+				</div>
+				<div class="col-lg-2 upImg" style="vertical-align: bottom;height: 80px; color: #f60;font-size: 12px;padding-top: 60px;line-height: 20px;">建议上传图片比例1:1</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-lg-1">描述</label>
+				<div class="col-lg-11 one-columu">
+					<textarea class="form-control" ng-model="editorData.Describe"></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class=" col-lg-10 col-lg-offset-1">
+					<input type="button" class="btn btn-success" ng-click="formSubmit()" value="确定" />
+					<input type="button" ng-click="closeThisDialog()" class="btn btn-default" value="取消" />
+				</div>
+			</div>
+		</form>
+	</div>
+</script>

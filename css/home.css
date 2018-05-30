@@ -1,0 +1,138 @@
+.col-header {
+	position: relative;
+}
+
+.headericon {
+	color: #fff;
+	line-height: 1.5!important;
+	min-height: 55px!important;
+}
+
+.headerNav {
+	border-color: rgba(0, 0, 0, 0)!important;
+	border-radius: 5px;
+}
+
+.pv-lg {
+	text-align: center;
+	padding: 10px 0;
+}
+
+.headercomment {
+	display: inline-block;
+	position: absolute;
+	width: 20px;
+	height: 25px;
+	background: rgb(247, 80, 80);
+	top: -10px;
+	right: 3px;
+	text-align: center;
+}
+
+.Todo {
+	width: 100%;
+	min-height: 315px;
+	border: 1px solid #cfdbe2;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+	margin: 0 auto;
+}
+
+.Todo-header {
+	height: 45px;
+	line-height: 44px;
+	border-bottom: 1px solid #cfdbe2;
+}
+
+.Todo-header .left {
+	display: inline-block;
+	border-right: 1px solid #cfdbe2;
+	width: 50px;
+	text-align: center;
+}
+
+.Todo-header .right {
+	font-size: 14px;
+	font-weight: 600;
+	padding-left: 10px
+}
+
+.Todo-contain .TodoTitle {
+	line-height: 60px;
+	border-bottom: 1px solid #cfdbe2;
+	font-size: 14px;
+}
+
+.Todo-contain .TodoAct {
+	line-height: 45px;
+}
+
+.Todo-contain .TodoAct div {
+	flex: 3;
+}
+
+.Todo-contain .TodoAct div span {
+	font-size: 14px;
+	font-weight: 600;
+	padding-left: 10px
+}
+
+.echartsFooter {
+	width: 100%;
+	min-height: 350px;
+	border: 1px solid #cfdbe2;
+	margin: 20px auto;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+
+/*设置*/
+
+.pointer {
+	font-size: 24px;
+	margin-right: 10px;
+}
+
+
+/*设置/密码修改*/
+
+.inputPlay {
+	display: inline-block!important;
+	width: 250px!important;
+}
+
+.divRight {
+	text-align: right;
+	width: 80px;
+}
+
+.buttonBottom {
+	text-align: center!important;
+	height: 300px!important;
+}
+
+.hengxian {
+	width: 96%;
+	margin: 0 auto;
+	border-bottom: 1px solid #CDCDCD;
+}
+
+.divLeft {
+	width: 70px;
+	text-align: right;
+}
+
+.row-right {
+	margin-left: 60px!important;
+}
+
+.iHeight {
+	line-height: 35px!important;
+}
+
+.main-box .main-box-header {
+	border-bottom: solid 1px #ddd;
+}
+
+.main-box-header h5 {
+	text-align: left;
+}

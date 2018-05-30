@@ -1,0 +1,85 @@
+<!-- navbar header -->
+<div class="navbar-header {{app.settings.navbarHeaderColor}}">
+	<button class="pull-right visible-xs dk" ui-toggle-class="show" data-target=".navbar-collapse">
+		<i class="glyphicon glyphicon-cog"></i>
+	</button>
+	<button class="pull-right visible-xs" ui-toggle-class="off-screen" data-target=".app-aside" ui-scroll="app">
+		<i class="glyphicon glyphicon-align-justify"></i>
+	</button>
+	<!-- brand -->
+	<a href="#/" class="navbar-brand text-lt">
+		<i class="fa fa-btc"></i>
+		<img src="img/logo.png" alt="." class="hide">
+		<span class="hidden-folded m-l-xs">{{app.name}}</span>
+	</a>
+	<!-- / brand -->
+</div>
+<!-- / navbar header -->
+
+<!-- navbar collapse -->
+<div class="collapse header-bar pos-rlt navbar-collapse box-shadow {{app.settings.navbarCollapseColor}}">
+	<!-- buttons -->
+	<div class="nav navbar-nav hidden-xs">
+		<h4 class="store-top-title">{{app.name}} · 店铺管理中心</h4>
+		<!--<a href class="btn no-shadow navbar-btn" ng-click="app.settings.asideFolded = !app.settings.asideFolded">
+			<i class="fa {{app.settings.asideFolded ? 'fa-indent' : 'fa-dedent'}} fa-fw"></i>
+		</a>
+		<a href class="btn no-shadow navbar-btn" ui-toggle-class="show" target="#aside-user">
+			<i class="icon-user fa-fw"></i>
+		</a>-->
+
+	</div>
+
+	<!-- nabar right -->
+	<ul class="nav navbar-nav navbar-right">
+
+		<li class="hidden-xs">
+			<a ui-fullscreen></a>
+		</li>
+		<li class="hidden-xs my-caret" dropdown>
+			<a href class="dropdown-toggle clear" dropdown-toggle title="点击切换店铺">
+				<span class="hidden-sm hidden-md peple-color">{{ShopName}}</span> <b class="caret"></b>
+			</a>
+			<!--{{ShopName}}-->
+
+			<!-- dropdown -->
+			<ul class="dropdown-menu animated fadeInRight w">
+				<li ng-repeat="x in StoreInfo.ShopList">
+					<a ng-click="changeShop(x)">
+						{{x.ShopName}}
+					</a>
+
+				</li>
+			</ul>
+			<!-- / dropdown -->
+		</li>
+		<li class="dropdown" dropdown>
+			<a href class="dropdown-toggle clear" dropdown-toggle>
+				<span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
+                <img ng-src="{{user.picture}}" alt="...">
+                <i class="on md b-white bottom"></i>
+              </span>
+				<span class="hidden-sm hidden-md peple-color">{{user.name}}</span> <b class="caret"></b>
+			</a>
+			<!-- dropdown -->
+			<ul class="dropdown-menu animated fadeInRight w">
+				<li>
+					<a ui-sref="app.PasswordModify">
+						修改密码
+					</a>
+					<a ui-sref="app.PermissionSetting">
+						<span class="label bg-info pull-right">new</span> 账号权限
+					</a>
+				</li>
+				<li class="divider"></li>
+				<li>
+					<a ng-click="exitSystem()">退出</a>
+				</li>
+			</ul>
+			<!-- / dropdown -->
+		</li>
+	</ul>
+	<!-- / navbar right -->
+
+</div>
+<!-- / navbar collapse -->
